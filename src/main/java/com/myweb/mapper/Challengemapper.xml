@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.myweb.mapper.Challengemapper">
+  <select id="selectByCol" parameterType="hashmap" resultType="com.myweb.pojo.Challenge">
+  Select title,cid,flag,type,link,description,solved_number,pic_address,name,platform,isuse,subtype,myuse,isopen,address from tools 
+  <where>
+    <if test=" type != null ">
+     and type= #{type}
+    </if>
+    <if test=" isuse != null ">
+     and isuse= #{isuse}
+    </if>
+    <if test=" myuse != null ">
+      and myuse= #{myuse}
+    </if>
+    <if test="search != null">
+      and (name like "%"#{search}"%" 
+       or isopen like "%"#{search}"%" 
+       or platform like"%"#{search}"%")
+    </if></where>
+  </select>
+</mapper>
